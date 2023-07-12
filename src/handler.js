@@ -100,9 +100,33 @@ const editNoteHandler = (req, h) => {
   }
 };
 
+// remove data by id
+const removeNoteHandler = (req, h) => {
+  const { id } = req.params;
+  const index = notes.findIndex((note) => note.id === id);
+
+  if (index !== -1) {
+    notes.splice(index, 1);
+    const response = h.response({
+      status: 'success',
+      message: 'Catatan berhasil dihapus',
+    });
+    response.code(200);
+    return response;
+  } else {
+    const response = h.response({
+      status: 'fail',
+      message: 'Catatan gagal dihapus',
+    });
+    response.code(404);
+    return response;
+  }
+};
+
 module.exports = {
   addNoteHandler,
   showNoteHandler,
   allNotesHandler,
   editNoteHandler,
+  removeNoteHandler,
 };
