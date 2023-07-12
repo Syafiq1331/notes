@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-spacing */
 // eslint-disable-next-line max-len
-const { addNoteHandler, showNoteHandler, allNotesHandler } = require('./handler');
+const { addNoteHandler, showNoteHandler, allNotesHandler, editNoteHandler } = require('./handler');
 
 const routes = [
   {
@@ -17,6 +17,11 @@ const routes = [
     method: 'GET',
     path: '/notes/{id}',
     handler: showNoteHandler,
+  },
+  {
+    method: 'PUT',
+    path: '/notes/{id}',
+    handler: editNoteHandler,
   },
 ];
 
